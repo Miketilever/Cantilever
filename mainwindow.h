@@ -33,7 +33,7 @@ private:
     Ui::MainWindow *ui;
     enum Column
     {
-        CONDITION, GOD , FREQUENCY
+        CONDITION, GOD , FREQUENCY, AMPLITUDE, GAIN, SWING, SWINGV, SR
     };
 };
 #endif // MAINWINDOW_H

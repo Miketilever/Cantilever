@@ -55,5 +55,7 @@ int CantileverDialog::Gain2() const
 
 int CantileverDialog::Gain3() const
 {
-    return ui ->GainBox2->value();
+    return ui ->GainBox3->value();
 }
+
+

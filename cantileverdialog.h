@@ -22,6 +22,9 @@ public:
     int Gain2 () const;
     int Gain3 () const;
     double Frequency()const;
+    double Gain () const;
+    double Swing () const;
+    double SwingV () const;
 
 private slots:
     void on_buttonBox_accepted();
