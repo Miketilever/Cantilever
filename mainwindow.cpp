@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QtMath>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,14 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setColumnCount(8);
     Name <<"Condition" <<"Q factor" <<"Frequency [Hz]"<<"Amplitude[V]"<<"Amplification"<<"Swing"<<"Swing(vaccum)"<<"Slew Rate";
     ui->tableWidget->setHorizontalHeaderLabels(Name);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 void MainWindow::on_pushButtonNormal_clicked()
 {
     showNormal();
@@ -98,7 +98,8 @@ void MainWindow::on_pushButtonAdd_clicked()
     ui -> tableWidget -> setItem(row,SWINGV, new QTableWidgetItem(SwingStringV));
     ui -> tableWidget -> setItem(row,SR, new QTableWidgetItem(Sr));
 
-    QString path = QFileDialog::getSaveFileName(this,QString("E:/Pliki/Belki/plik.txt"),"",QString("(*.txt);;All Files (*)"));
+
+    QString path = QFileDialog::getSaveFileName(this,QString(),"",QString("(*.txt);;All Files (*)"));
     if(path.isEmpty())
         return;
     else{
@@ -109,13 +110,37 @@ void MainWindow::on_pushButtonAdd_clicked()
             return;
         }
         else{
-            QDataStream out(&file);
-            out.setVersion(QDataStream::Qt_5_11);
-            out<<"Condition "+Condition<< "\n" << "Q Factor "+GodString<< "\n" <<"Frequency "+FrequencyString<<" \n ";
-            out<<"Amplitude "+AmplitudeString<<"\n"<<"Gain "+GainString<< "\n" <<"Swing "+SwingString<< "\n" <<("Swing in vaccum ")+SwingStringV<<" \n ";
-            out<<("Slew rate ")+Sr;
+            QTextStream out(&file);
+            out <<"Condition: "+ Condition<<endl;
+            out <<"Q Factor: "+ GodString<<endl;
+            out <<"Frequency: "+ FrequencyString<<endl;
+            out <<"Amplitude: "+ AmplitudeString<<endl;
+            out <<"Gain: " + GainString<<endl;
+            out <<"Swing: "+SwingString<<endl;
+            out <<"Swing in vacuum: "+SwingStringV<<endl;
+            out <<"Slew rate: "+Sr;
         }
     }
 
+    // add two new graphs and set their look:
+    ui->plot->addGraph();
+    ui->plot->graph(0)->setPen(QPen(Qt::blue));
+    QVector<double> x(Frequency), y(Frequency);
+    for (int i=0; i<Frequency; ++i)
+    {
+      x[i] = i-Frequency/2;
+      y[i] = Swing/(1+qPow(x[i], 2));
+    }
+    ui->plot->xAxis2->setVisible(true);
+    ui->plot->xAxis2->setTickLabels(false);
+    ui->plot->yAxis2->setVisible(true);
+    ui->plot->yAxis2->setTickLabels(false);
+    ui->plot->yAxis->setLabel("Swing");
+    ui->plot->graph(0)->setData(x, y);
+    ui->plot->graph(0)->rescaleAxes();
+    ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
+
 }
+
 

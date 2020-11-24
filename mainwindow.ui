@@ -6,60 +6,59 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>861</width>
-    <height>756</height>
+    <width>923</width>
+    <height>723</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="pushButtonNormal">
-        <property name="text">
-         <string>Normal Screen</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButtonFull">
-        <property name="text">
-         <string>Full Screen</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0" rowspan="2" colspan="2">
+     <widget class="QTableWidget" name="tableWidget"/>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
        <widget class="QPushButton" name="pushButtonMax">
         <property name="text">
          <string>Maximize</string>
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="pushButtonAdd">
-        <property name="text">
-         <string> Add new component</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <item row="4" column="0">
        <widget class="QPushButton" name="pushButtonExit">
         <property name="text">
          <string>Exit</string>
         </property>
        </widget>
       </item>
-     </layout>
-    </item>
-    <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QTableWidget" name="tableWidget"/>
+      <item row="3" column="0">
+       <widget class="QPushButton" name="pushButtonAdd">
+        <property name="text">
+         <string> Add new component</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButtonNormal">
+        <property name="text">
+         <string>Normal Screen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButtonFull">
+        <property name="text">
+         <string>Full Screen</string>
+        </property>
+       </widget>
       </item>
      </layout>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QCustomPlot" name="plot" native="true"/>
     </item>
    </layout>
   </widget>
@@ -68,13 +67,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>861</width>
+     <width>923</width>
      <height>20</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

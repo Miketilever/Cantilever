@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QSaveFile>
+#include <QtCharts>
+#include <QChartView>
+#include <QLineSeries>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,11 +33,14 @@ private slots:
 
     void on_pushButtonSave_clicked();
 
+    //void makePlot();
+
 private:
     Ui::MainWindow *ui;
     enum Column
     {
         CONDITION, GOD , FREQUENCY, AMPLITUDE, GAIN, SWING, SWINGV, SR
     };
+
 };
 #endif // MAINWINDOW_H
