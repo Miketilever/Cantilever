@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void Cantilever();
 
 private slots:
     void on_pushButtonNormal_clicked();
@@ -31,9 +32,8 @@ private slots:
 
     void on_pushButtonAdd_clicked();
 
-    void on_pushButtonSave_clicked();
+    void on_pushButtonDraw_clicked();
 
-    //void makePlot();
 
 private:
     Ui::MainWindow *ui;

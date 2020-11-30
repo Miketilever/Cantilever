@@ -27,13 +27,6 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="pushButtonExit">
-        <property name="text">
-         <string>Exit</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="QPushButton" name="pushButtonAdd">
         <property name="text">
@@ -52,6 +45,20 @@
        <widget class="QPushButton" name="pushButtonFull">
         <property name="text">
          <string>Full Screen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QPushButton" name="pushButtonExit">
+        <property name="text">
+         <string>Exit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="pushButtonDraw">
+        <property name="text">
+         <string>Read</string>
         </property>
        </widget>
       </item>

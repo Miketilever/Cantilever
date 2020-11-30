@@ -43,6 +43,17 @@ void MainWindow::on_pushButtonExit_clicked()
 {
     close();
 }
+void MainWindow::on_pushButtonDraw_clicked()
+{
+    QFile file(QFileDialog::getOpenFileName(this,tr("Open File"),"", tr("Text Files (*.txt)")));
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream stream(&file);
+    QString text =stream.readAll();
+    QMessageBox box;
+    box.setText(text);
+    box.exec();
+    file.close();
+}
 
 void MainWindow::on_pushButtonAdd_clicked()
 {
@@ -62,7 +73,6 @@ void MainWindow::on_pushButtonAdd_clicked()
     QString GainString;
     QString GodString;
     QString FrequencyString;
-
 
     CantileverDialog pd;
     pd.setWindowTitle("Cantilever Database");
@@ -122,24 +132,27 @@ void MainWindow::on_pushButtonAdd_clicked()
         }
     }
 
-    // add two new graphs and set their look:
     ui->plot->addGraph();
     ui->plot->graph(0)->setPen(QPen(Qt::blue));
-    QVector<double> x(Frequency), y(Frequency);
-    for (int i=0; i<Frequency; ++i)
+    QVector<double> x(4*Frequency), y(2*Frequency);
+    for (int i=0; i<Frequency*2; ++i)
     {
-      x[i] = i-Frequency/2;
-      y[i] = Swing/(1+qPow(x[i], 2));
+      x[i] = i-Frequency/4;
+      y[i] = Swing/(1+qPow(x[i]-Frequency, 2));
     }
     ui->plot->xAxis2->setVisible(true);
     ui->plot->xAxis2->setTickLabels(false);
     ui->plot->yAxis2->setVisible(true);
     ui->plot->yAxis2->setTickLabels(false);
     ui->plot->yAxis->setLabel("Swing");
+    ui->plot->xAxis->setLabel("Frequency");
     ui->plot->graph(0)->setData(x, y);
     ui->plot->graph(0)->rescaleAxes();
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 
+}
+void MainWindow::Cantilever()
+{
 
 }
 
